@@ -1,43 +1,43 @@
-package com.example.test312.spring_security.dao;
+package com.example.task312.dao;
 
-import com.example.test312.spring_security.model.Role;
+
+import com.example.task312.model.Role;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Component
-public class RoleDaoHibernateImpl implements RoleDao {
+public class RoleDAOHibernateImpl implements RoleDAO {
 
     @PersistenceContext
     private EntityManager entityManager;
 
-    @Transactional
     @Override
-    public List<Role> getAllRole() {
-        return entityManager.createQuery("select r from Role r", Role.class).getResultList();
+    public Set<Role> getAllRole() {
+        List<Role> roleList = entityManager.createQuery("select r from Role r", Role.class).getResultList();
+        Set<Role> roleSet = new HashSet<>(roleList);
+        return roleSet;
     }
 
-    @Transactional
     @Override
     public Role getRole(String userRole) {
         try {
             return entityManager.createQuery("select r from Role r where r.name =: userRole", Role.class)
                     .setParameter("userRole", userRole).getSingleResult();
         } catch (Exception e) {
-            return null;
+            return Role.NOBODY;
         }
     }
 
-    @Transactional
     @Override
     public Role getRole(long roleId) {
         return entityManager.find(Role.class, roleId);
     }
 
-    @Transactional
     @Override
     public void addRole(Role role) {
         entityManager.persist(role);
