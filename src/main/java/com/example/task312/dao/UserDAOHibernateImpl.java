@@ -1,15 +1,12 @@
 package com.example.task312.dao;
 
 import com.example.task312.model.User;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Repository
 public class UserDAOHibernateImpl implements UserDAO {
@@ -18,9 +15,8 @@ public class UserDAOHibernateImpl implements UserDAO {
     private EntityManager entityManager;
 
     @Override
-    public Set<User> getAllUser() {
-        List<User> userList = entityManager.createQuery("select u from User u", User.class).getResultList();
-        return new HashSet<>(userList);
+    public List<User> getAllUser() {
+        return entityManager.createQuery("select u from User u", User.class).getResultList();
     }
 
     @Override

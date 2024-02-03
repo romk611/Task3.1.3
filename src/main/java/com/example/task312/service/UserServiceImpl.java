@@ -9,7 +9,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Set;
+import java.util.List;
 
 
 @Service
@@ -21,7 +21,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         this.userDAO = userDAO;
     }
 
-    public Set<User> getAllUser() {
+    public List<User> getAllUser() {
         return userDAO.getAllUser();
     }
 

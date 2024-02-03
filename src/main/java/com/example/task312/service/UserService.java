@@ -2,10 +2,10 @@ package com.example.task312.service;
 
 import com.example.task312.model.User;
 
-import java.util.Set;
+import java.util.List;
 
 public interface UserService {
-    Set<User> getAllUser();
+    List<User> getAllUser();
 
     User getUserById(long id);
 
