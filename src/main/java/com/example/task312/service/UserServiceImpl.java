@@ -54,13 +54,11 @@ public class UserServiceImpl implements UserDetailsService, UserService {
             throw new UsernameNotFoundException("Unknown user: " + userName);
         }
 
-        UserDetails userDetails =
-                org.springframework.security.core.userdetails.User.builder()
-                        .username(user.getUsername())
-                        .password(user.getPassword())
-                        .authorities(user.getAuthorities())
-                        .build();
-        return userDetails;
+        return org.springframework.security.core.userdetails.User.builder()
+                .username(user.getUsername())
+                .password(user.getPassword())
+                .authorities(user.getAuthorities())
+                .build();
     }
 
 }

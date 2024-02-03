@@ -2,7 +2,6 @@ package com.example.task312.dao;
 
 
 import com.example.task312.model.Role;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
