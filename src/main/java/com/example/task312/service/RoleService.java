@@ -7,7 +7,7 @@ import java.util.*;
 public interface RoleService {
     Role getRole(String userRole);
 
-    Set<Role> getAllRole();
+    List<Role> getAllRole();
 
     Role getRole(long roleId);
 

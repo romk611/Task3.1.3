@@ -6,7 +6,7 @@ import com.example.task312.model.Role;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Set;
+import java.util.List;
 
 @Service
 public class RoleServiceImpl implements RoleService{
@@ -21,7 +21,7 @@ public class RoleServiceImpl implements RoleService{
         return roleDAO.getRole(userRole);
     }
 
-    public Set<Role> getAllRole() {
+    public List<Role> getAllRole() {
         return roleDAO.getAllRole();
     }
 

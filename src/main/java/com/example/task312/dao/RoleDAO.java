@@ -3,10 +3,10 @@ package com.example.task312.dao;
 
 import com.example.task312.model.Role;
 
-import java.util.Set;
+import java.util.List;
 
 public interface RoleDAO {
-    Set<Role> getAllRole();
+    List<Role> getAllRole();
 
     Role getRole(String userRole);
 
