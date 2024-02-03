@@ -1,36 +1,15 @@
 package com.example.task312.service;
 
-
-import com.example.task312.dao.RoleDAO;
 import com.example.task312.model.Role;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Set;
+import java.util.*;
 
-@Service
-public class RoleService {
+public interface RoleService {
+    Role getRole(String userRole);
 
-    private final RoleDAO roleDAO;
+    Set<Role> getAllRole();
 
-    public RoleService(RoleDAO roleDAO) {
-        this.roleDAO = roleDAO;
-    }
+    Role getRole(long roleId);
 
-    public Role getRole(String userRole) {
-        return roleDAO.getRole(userRole);
-    }
-
-    public Set<Role> getAllRole() {
-        return roleDAO.getAllRole();
-    }
-
-    public Role getRole(long roleId) {
-        return roleDAO.getRole(roleId);
-    }
-
-    @Transactional
-    public void addRole(Role role) {
-        roleDAO.addRole(role);
-    }
+    void addRole(Role role);
 }

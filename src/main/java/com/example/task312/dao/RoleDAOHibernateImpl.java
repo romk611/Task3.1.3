@@ -3,6 +3,7 @@ package com.example.task312.dao;
 
 import com.example.task312.model.Role;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -10,7 +11,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-@Component
+@Repository
 public class RoleDAOHibernateImpl implements RoleDAO {
 
     @PersistenceContext
@@ -19,8 +20,7 @@ public class RoleDAOHibernateImpl implements RoleDAO {
     @Override
     public Set<Role> getAllRole() {
         List<Role> roleList = entityManager.createQuery("select r from Role r", Role.class).getResultList();
-        Set<Role> roleSet = new HashSet<>(roleList);
-        return roleSet;
+        return new HashSet<>(roleList);
     }
 
     @Override

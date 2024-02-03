@@ -9,12 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
-import java.util.*;
-import java.util.List;
 
 @Controller
 @RequestMapping("/admin")
@@ -62,11 +59,12 @@ public class AdminsController {
         Role role = roleService.getRole(roleId);
         System.err.println(role);
         user.setRole(role);
+        user.setPassword(encoder.encode(user.getPassword()));
         userService.editUser(user);
         return "redirect:/admin/users";
     }
     @PostMapping("/users")
-    public String createUser(@ModelAttribute("user") User user, Principal principal, BindingResult bindingResult, Model model, @RequestParam(value = "role_id") String roleId) {
+    public String createUser(@ModelAttribute("user") User user, Principal principal, Model model, @RequestParam(value = "role_id") String roleId) {
 
         User admin = userService.getUserByUsername(principal.getName());
 
